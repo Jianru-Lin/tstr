@@ -2,7 +2,7 @@
 // example:
 //     tstr('http://${host}:${port}/index.html', {host: 'www.target.com', port: '8080'})
 //     -> http://www.target.com:8080/index.html
-function tstr(str, data, conv) {
+function tstr(str, data) {
 
     checkArguments()
     
@@ -15,7 +15,7 @@ function tstr(str, data, conv) {
             throw new Error('[tstr] invalid data, typeof data[' + g1 + '] must be string')
         }
         else {
-            return conv(data[g1])
+            return data[g1]
         }
     })
 
@@ -25,12 +25,6 @@ function tstr(str, data, conv) {
         }
         if (typeof data !== 'object') {
             throw new Error('[tstr] invalid argument, type of data must be object')
-        }
-        if (conv === null || conv === undefined) {
-            conv = function(a) { return a; }
-        }
-        else if (typeof conv !== 'function') {
-            throw new Error('[tstr] invalid argument, type of conv must be function when provided')
         }
     }
 }
