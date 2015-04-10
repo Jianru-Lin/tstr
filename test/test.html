@@ -3,36 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<title>tstr Test Page</title>
-	<style>
-		body {
-			font-family: Consolas;
-		}
-	</style>
-	<script src="test.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/test.css"/>
+	<script src="js/vue.js"></script>
+	<script src="js/test.js"></script>
 	<script src="../src/tstr.js"></script>
 </head>
 <body>
-	<div class="title">
-		<h3>Test Title</h3>
-		<div>
-			<strong>args</strong>
-			<ol>
-				<li>str=xxx</li>
-				<li>data=xxx</li>
-			</ol>
+	<div class="log">
+		<div v-repeat="test : testList" class="test">
+			<h3>{{test.title}}</h3>
+			<span>
+				tstr(<span class="str">{{test.args.str}}</span>, 
+					<span class="data">{{test.args.data}}</span>, 
+					<span class="option">{{test.args.option}}</span>)
+			</span>
+			<span>=&gt;</span>
+			<span class="ret">{{test.ret}}</span>
+			<span class="error">{{test.error}}</span>
 		</div>
-		<div>
-			<strong>ret</strong>
-			<span>xxx</span>
-		</div>
-		<div>
-			<strong>error</strong>
-			<span>no</span>
-		</div>
-		<div>
-			<strong>success?</strong>
-			<span>yes</span>
-		</div>
-	<div>
+	</div>
 </body>
 </html>
