@@ -38,7 +38,7 @@ onload = function() {
 		}
 
 		TestLogger.prototype.ret = function(value) {
-			this.vm.ret = value
+			this.vm.ret = value === undefined ? 'undefined' : JSON.stringify(value)
 		}
 
 		TestLogger.prototype.error = function(errorObj) {
@@ -57,47 +57,68 @@ onload = function() {
 	})();
 
 	(function() {
+		window.runTestPlan = function(testPlan) {
+
+			for (var i = 0, len = testPlan.length; i < len; ++i) {
+				var logger = new TestLogger()
+				var test = testPlan[i]
+				doTest(test, logger)
+			}
+
+			function doTest(test, logger) {
+				logger.title(test.title)
+				var ret, err
+				var str = test.args.str
+				var data = test.args.data
+				logger.args(str, data)
+				try {debugger
+					ret = tstr(str, data)
+					logger.ret(ret)
+				}
+				catch (_err) {
+					err = _err
+					logger.error(err)
+				}
+				var success = test.assert(ret, err)
+				if (success) {
+					logger.success()
+				}
+				else {
+					logger.failure()
+				}
+			}
+
+		}
+	})();
+
+	(function() {
 		var testPlan = []
 
 		testPlan.push({
 			title: 'Invalid Arguments',
 			args: {
 				str: undefined,
-				data: undefined
+				data: undefined,
+				option: undefined
 			},
 			assert: function(ret, error) {
 				return error && error.toString().indexOf('invalid argument') !== -1
 			}
 		})
 
-		for (var i = 0, len = testPlan.length; i < len; ++i) {
-			var logger = new TestLogger()
-			var test = testPlan[i]
-			doTest(test, logger)
-		}
+		testPlan.push({
+			title: 'Empty String',
+			args: {
+				str: '',
+				data: {},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
 
-		function doTest(test, logger) {
-			logger.title(test.title)
-			var ret, err
-			var str = test.args.str
-			var data = test.args.data
-			logger.args(str, data)
-			try {
-				var ret = tstr(str, data)
-				logger.ret(ret)
-			}
-			catch (_err) {
-				err = _err
-				logger.error(err)
-			}
-			var success = test.assert(ret, err)
-			if (success) {
-				logger.success()
-			}
-			else {
-				logger.failure()
-			}
-		}
+		runTestPlan(testPlan)
 	})();
 
 }
