@@ -114,12 +114,35 @@ function tstr(str, data, option) {
         tstr.filterMap = {
             uri: encodeURI,
             uricom: encodeURIComponent,
-            json: function (value) {
+            json: function(value) {
                 // null is ok, but undefined is rejected
                 if (value === undefined) {
                     throw new Error('[json filter] value can not be undefined')
                 }
                 return JSON.stringify(value)
+            },
+            query: function(value) {
+                if (value === undefined || value === null) {
+                    return ''
+                }
+                else if (typeof value !== 'object') {
+                    throw new Error('[json filter] value is provided but it\'s type is not object')
+                }
+                else {
+                    var obj = value
+                    var list = []
+                    for (var name in obj) {
+                        if (typeof obj[name] === 'string') {
+                            list.push(encodeURIComponent(name) + '=' + encodeURIComponent(obj[name]))
+                        }
+                    }
+                    if (list.length > 0) {
+                        return '?' + list.join('&')
+                    }
+                    else {
+                        return ''
+                    }
+                }
             }
         }
     }

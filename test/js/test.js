@@ -228,6 +228,24 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter query',
+			args: {
+				str: 'http://www.target.com/a/b/search${q|query}',
+				data: {
+					q: {
+						id: '1909',
+						keyword: 'a+b&c'
+					}
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
