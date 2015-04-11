@@ -5,6 +5,7 @@
 function tstr(str, data, option) {
 
     checkArgs()
+    init()
     return level_0(str, data2f(data))
 
     function checkArgs() {
@@ -14,11 +15,12 @@ function tstr(str, data, option) {
         if (typeof data !== 'object') {
             throw new Error('[tstr] invalid argument, type of data must be object')
         }
+        // TODO check option
     }
 
     function level_0(str, f) {
 
-        var pattern = /\${([a-zA-Z0-9_]+)}/g
+        var pattern = /\${([^}]+)}/g
         return str.replace(pattern, function(g0, g1, pos, src) {
             var val = f(g1)
             if (val === undefined || val === null) {
@@ -46,8 +48,82 @@ function tstr(str, data, option) {
         if (typeof data !== 'object') {
             throw new Error('[data2f] invalid argument, typeof data must be object')
         }
-        return function(name) {
-            return data[name]
+        return queryValue
+        
+        function queryValue(expText) {
+            filterExp = parseFilterExpression(expText)
+            return executeFilterExpression(filterExp)
+
+            function parseFilterExpression(expText) {
+                // split by |
+                var parts = expText.split('|')
+                // clear useless whitespace of every part
+                parts = parts.map(function(part) {
+                    return part.trim()
+                })
+                // return result
+                if (parts.length > 1) {
+                    return {
+                        name: parts[0],
+                        filterNameList: parts.slice(1)
+                    }
+                }
+                else {
+                    return {
+                        name: parts[0],
+                        filterNameList: []
+                    }
+                }
+            }
+
+            function executeFilterExpression(filterExp) {
+                // retrive the raw value
+                var rawValue = data[filterExp.name]
+                if (rawValue === undefined || rawValue === null) {
+                    rawValue = ''
+                }
+                else if (typeof rawValue !== 'string') {
+                    throw new Error('[executeFilterExpression] value returned from data[' + filterExp.name + '] must be string or null or undefined')
+                }
+                // invoke filter function on rawValue
+                var value = rawValue
+                filterExp.filterNameList.forEach(function(filterName) {
+                    // ignore empty filterName
+                    if (!filterName) {
+                        return
+                    }
+                    var filterFun = tstr.filterMap[filterName]
+                    if (typeof filterFun !== 'function') {
+                        throw new Error('[executeFilterExpression] filter function not found: ' + filterName)
+                    }
+                    // try invoke the filterFun
+                    try {
+                        value = filterFun(rawValue)
+                        // recheck the value
+                        if (typeof value !== 'string') {
+                            throw new Error('[executeFilterExpression] filter function returned an value that is not string: ' + value)
+                        }
+                    }
+                    catch (err) {
+                        throw new Error('[executeFilterExpression] error throwed from filter function ' + filterName + ', ' + err.toString())
+                    }
+                })
+
+                // return result
+                return value
+            }
+        }
+
+    }
+
+    function init() {
+        if (tstr.inited) {
+            return
+        }
+        tstr.inited = true
+        tstr.filterMap = {
+            URI: encodeURI,
+            URICom: encodeURIComponent
         }
     }
 }
