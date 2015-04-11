@@ -71,7 +71,7 @@ onload = function() {
 				var str = test.args.str
 				var data = test.args.data
 				logger.args(str, data)
-				try {debugger
+				try {
 					ret = tstr(str, data)
 					logger.ret(ret)
 				}
