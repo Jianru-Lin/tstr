@@ -107,10 +107,46 @@ onload = function() {
 		})
 
 		testPlan.push({
-			title: 'Empty String',
+			title: 'Empty string',
 			args: {
 				str: '',
 				data: {},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
+
+		testPlan.push({
+			title: 'No variable',
+			args: {
+				str: 'Text without any variables.',
+				data: {},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable',
+			args: {
+				str: 'Hello ${name}!',
+				data: {name: 'John'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
+
+		testPlan.push({
+			title: 'Multiple variables',
+			args: {
+				str: 'Hello ${name}! Your email is ${email}',
+				data: {name: 'John', email: 'john@company.com'},
 				option: undefined
 			},
 			assert: function(ret, error) {
