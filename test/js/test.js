@@ -159,9 +159,9 @@ onload = function() {
 		})
 
 		testPlan.push({
-			title: 'Filter URI',
+			title: 'Filter uri',
 			args: {
-				str: '${text|URI}',
+				str: '${text|uri}',
 				data: {text: 'http://www.target.com/path/中文/b/c?query1=value1'},
 				option: undefined
 			},
@@ -172,9 +172,9 @@ onload = function() {
 		})
 
 		testPlan.push({
-			title: 'Filter URICom',
+			title: 'Filter uricom',
 			args: {
-				str: '${text|URICom}',
+				str: '${text|uricom}',
 				data: {text: 'http://www.target.com/path/中文/b/c?query1=value1'},
 				option: undefined
 			},

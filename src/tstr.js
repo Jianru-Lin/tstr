@@ -122,8 +122,8 @@ function tstr(str, data, option) {
         }
         tstr.inited = true
         tstr.filterMap = {
-            URI: encodeURI,
-            URICom: encodeURIComponent
+            uri: encodeURI,
+            uricom: encodeURIComponent
         }
     }
 }
