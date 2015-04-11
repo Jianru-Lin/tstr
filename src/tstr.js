@@ -123,7 +123,10 @@ function tstr(str, data, option) {
         tstr.inited = true
         tstr.filterMap = {
             uri: encodeURI,
-            uricom: encodeURIComponent
+            uricom: encodeURIComponent,
+            json: function (value) {
+                return JSON.stringify(value)
+            }
         }
     }
 }

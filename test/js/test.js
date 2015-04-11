@@ -197,6 +197,19 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter json',
+			args: {
+				str: '${text|json}',
+				data: {text: 'some text'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
