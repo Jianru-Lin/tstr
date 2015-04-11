@@ -210,6 +210,24 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter json (obj)',
+			args: {
+				str: '${obj|json}',
+				data: {
+					obj: {
+						name: 'catty',
+						age: 5
+					}
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 

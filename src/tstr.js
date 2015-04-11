@@ -79,12 +79,6 @@ function tstr(str, data, option) {
             function executeFilterExpression(filterExp) {
                 // retrive the raw value
                 var rawValue = data[filterExp.name]
-                if (rawValue === undefined || rawValue === null) {
-                    rawValue = ''
-                }
-                else if (typeof rawValue !== 'string') {
-                    throw new Error('[executeFilterExpression] value returned from data[' + filterExp.name + '] must be string or null or undefined')
-                }
                 // invoke filter function on rawValue
                 var value = rawValue
                 filterExp.filterNameList.forEach(function(filterName) {
@@ -99,10 +93,6 @@ function tstr(str, data, option) {
                     // try invoke the filterFun
                     try {
                         value = filterFun(value)
-                        // recheck the value
-                        if (typeof value !== 'string') {
-                            throw new Error('[executeFilterExpression] filter function returned an value that is not string: ' + value)
-                        }
                     }
                     catch (err) {
                         throw new Error('[executeFilterExpression] error throwed from filter function ' + filterName + ', ' + err.toString())
@@ -125,6 +115,10 @@ function tstr(str, data, option) {
             uri: encodeURI,
             uricom: encodeURIComponent,
             json: function (value) {
+                // null is ok, but undefined is rejected
+                if (value === undefined) {
+                    throw new Error('[json filter] value can not be undefined')
+                }
                 return JSON.stringify(value)
             }
         }
