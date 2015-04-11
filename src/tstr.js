@@ -98,7 +98,7 @@ function tstr(str, data, option) {
                     }
                     // try invoke the filterFun
                     try {
-                        value = filterFun(rawValue)
+                        value = filterFun(value)
                         // recheck the value
                         if (typeof value !== 'string') {
                             throw new Error('[executeFilterExpression] filter function returned an value that is not string: ' + value)

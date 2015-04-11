@@ -184,6 +184,19 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Double Filter uricom',
+			args: {
+				str: '${text|uricom|uricom}',
+				data: {text: 'http://www.target.com/path/中文/b/c?query1=value1'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
