@@ -154,6 +154,17 @@ function tstr(str, data, option) {
                 else {
                     return value.toUpperCase()
                 }
+            },
+            lower: function(value) {
+                if (value === undefined || value === null) {
+                    return ''
+                }
+                else if (typeof value !== 'string') {
+                    throw new Error('[lower filter] value is provided but it\'s type is not string')
+                }
+                else {
+                    return value.toLowerCase()
+                }
             }
         }
     }

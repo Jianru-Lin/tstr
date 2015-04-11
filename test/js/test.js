@@ -261,6 +261,21 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter lower',
+			args: {
+				str: '${text|lower}',
+				data: {
+					text: 'abcDefGh'
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
