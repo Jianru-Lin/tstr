@@ -143,6 +143,17 @@ function tstr(str, data, option) {
                         return ''
                     }
                 }
+            },
+            upper: function(value) {
+                if (value === undefined || value === null) {
+                    return ''
+                }
+                else if (typeof value !== 'string') {
+                    throw new Error('[upper filter] value is provided but it\'s type is not string')
+                }
+                else {
+                    return value.toUpperCase()
+                }
             }
         }
     }

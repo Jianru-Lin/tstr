@@ -246,6 +246,21 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter upper',
+			args: {
+				str: '${text|upper}',
+				data: {
+					text: 'abcDefGh'
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
