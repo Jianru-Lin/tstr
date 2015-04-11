@@ -154,6 +154,30 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Filter URI',
+			args: {
+				str: '${text|URI}',
+				data: {text: 'http://www.target.com/path/中文/b/c?query1=value1'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
+
+		testPlan.push({
+			title: 'Filter URICom',
+			args: {
+				str: '${text|URICom}',
+				data: {text: 'http://www.target.com/path/中文/b/c?query1=value1'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				return ret === ''
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 
