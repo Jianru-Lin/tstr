@@ -12,7 +12,7 @@ function tstr(str, data, option) {
         if (typeof str !== 'string') {
             throw new Error('[tstr] invalid argument, type of str must be string')
         }
-        if (typeof data !== 'object') {
+        if (typeof data !== 'object' || data === null) {
             throw new Error('[tstr] invalid argument, type of data must be object')
         }
         // TODO check option
@@ -45,7 +45,7 @@ function tstr(str, data, option) {
     }
 
     function data2f(data) {
-        if (typeof data !== 'object') {
+        if (typeof data !== 'object' || data === null) {
             throw new Error('[data2f] invalid argument, typeof data must be object')
         }
         return queryValue
