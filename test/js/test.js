@@ -276,6 +276,72 @@ onload = function() {
 			}
 		})
 
+		testPlan.push({
+			title: 'Dot expression',
+			args: {
+				str: '${user.name}',
+				data: {
+					user: {
+						name: 'Tom'
+					}
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Dot expression recursive',
+			args: {
+				str: '${user.father.name}',
+				data: {
+					user: {
+						father: {
+							name: 'father\'s name'	
+						}
+					}
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Dot expression (array)',
+			args: {
+				str: '${list.0}',
+				data: {
+					list: ['zero', 'one', 'two']
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Dot expression recursive (array)',
+			args: {
+				str: '${list.0.1}',
+				data: {
+					list: [['zero', 'one', 'two'], []]
+				},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
 		runTestPlan(testPlan)
 	})();
 

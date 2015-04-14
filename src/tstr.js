@@ -78,7 +78,7 @@ function tstr(str, data, option) {
 
             function executeFilterExpression(filterExp) {
                 // retrive the raw value
-                var rawValue = data[filterExp.name]
+                var rawValue = getValue(data, filterExp.name)
                 // invoke filter function on rawValue
                 var value = rawValue
                 filterExp.filterNameList.forEach(function(filterName) {
@@ -101,6 +101,26 @@ function tstr(str, data, option) {
 
                 // return result
                 return value
+
+                function getValue(obj, propLink) {
+                    if (propLink.indexOf('.') === -1) {
+                        return obj[propLink]
+                    }
+                    else {
+                        var result = obj
+                        propLink = propLink.split('.')
+                        try {
+                            propLink.forEach(function(prop) {
+                                result = result[prop]
+                            })
+                        }
+                        catch (err) {
+                            // tolerate error
+                            return ''
+                        }
+                        return result
+                    }
+                }
             }
         }
 
