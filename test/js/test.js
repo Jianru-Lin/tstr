@@ -133,10 +133,88 @@ onload = function() {
 		})
 
 		testPlan.push({
-			title: 'Single variable',
+			title: 'Single variable (string)',
 			args: {
-				str: 'Hello ${name}!',
-				data: {name: 'John'},
+				str: '${value}',
+				data: {value: 'some text'},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (number)',
+			args: {
+				str: '${value}',
+				data: {value: 12.34},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (boolean)',
+			args: {
+				str: '${value}',
+				data: {value: false},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (null)',
+			args: {
+				str: '${value}',
+				data: {value: null},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (undefined)',
+			args: {
+				str: '${value}',
+				data: {value: undefined},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (object)',
+			args: {
+				str: '${value}',
+				data: {value: {name: 'John'}},
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
+			title: 'Single variable (array)',
+			args: {
+				str: '${value}',
+				data: {value: [1, '2', null, undefined, true, false, {}, []]},
 				option: undefined
 			},
 			assert: function(ret, error) {
