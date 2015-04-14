@@ -133,6 +133,19 @@ onload = function() {
 		})
 
 		testPlan.push({
+			title: 'Single variable (without data)',
+			args: {
+				str: '${value}',
+				data: undefined,
+				option: undefined
+			},
+			assert: function(ret, error) {
+				// TODO
+				return true
+			}
+		})
+
+		testPlan.push({
 			title: 'Single variable (string)',
 			args: {
 				str: '${value}',
