@@ -165,7 +165,7 @@ function tstr(str, data, option) {
                         }
                     }
                     if (list.length > 0) {
-                        return '?' + list.join('&')
+                        return list.join('&')
                     }
                     else {
                         return ''
