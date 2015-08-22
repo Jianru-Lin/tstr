@@ -1,0 +1,25 @@
+{
+  "name": "tstr",
+  "version": "1.0.0",
+  "description": "useful template string utility.",
+  "main": "tstr.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jianru-Lin/tstr.git"
+  },
+  "keywords": [
+    "template"
+  ],
+  "author": "Jianru Lin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jianru-Lin/tstr/issues"
+  },
+  "homepage": "https://github.com/Jianru-Lin/tstr#readme"
+}

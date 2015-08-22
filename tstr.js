@@ -1,3 +1,13 @@
+try {
+    var node_ver = process.versions.node
+    if (node_ver) {
+        module.exports = tstr
+    }
+}
+catch(err) {
+    // not node.js environment, ignore error
+}
+
 // template string function
 // example:
 //     tstr('http://${host}:${port}/index.html', {host: 'www.target.com', port: '8080'})
