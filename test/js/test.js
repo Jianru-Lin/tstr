@@ -72,7 +72,7 @@ onload = function() {
 				var data = test.args.data
 				logger.args(str, data)
 				try {
-					ret = tstr(str, data)
+					ret = vstr(str, data)
 					logger.ret(ret)
 				}
 				catch (_err) {

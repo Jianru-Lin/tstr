@@ -1,7 +1,7 @@
 try {
     var node_ver = process.versions.node
     if (node_ver) {
-        module.exports = tstr
+        module.exports = vstr
     }
 }
 catch(err) {
@@ -10,9 +10,9 @@ catch(err) {
 
 // template string function
 // example:
-//     tstr('http://${host}:${port}/index.html', {host: 'www.target.com', port: '8080'})
+//     vstr('http://${host}:${port}/index.html', {host: 'www.target.com', port: '8080'})
 //     -> http://www.target.com:8080/index.html
-function tstr(str, data, option) {
+function vstr(str, data, option) {
 
     // data can be null or undefined
     // we just treat it as an empty object
@@ -26,10 +26,10 @@ function tstr(str, data, option) {
 
     function checkArgs() {
         if (typeof str !== 'string') {
-            throw new Error('[tstr] invalid argument, type of str must be string')
+            throw new Error('[vstr] invalid argument, type of str must be string')
         }
         if (typeof data !== 'object' || data === null) {
-            throw new Error('[tstr] invalid argument, type of data must be object')
+            throw new Error('[vstr] invalid argument, type of data must be object')
         }
         // TODO check option
     }
@@ -104,7 +104,7 @@ function tstr(str, data, option) {
                     if (!filterName) {
                         return
                     }
-                    var filterFun = tstr.filterMap[filterName]
+                    var filterFun = vstr.filterMap[filterName]
                     if (typeof filterFun !== 'function') {
                         throw new Error('[executeFilterExpression] filter function not found: ' + filterName)
                     }
@@ -145,11 +145,11 @@ function tstr(str, data, option) {
     }
 
     function init() {
-        if (tstr.inited) {
+        if (vstr.inited) {
             return
         }
-        tstr.inited = true
-        tstr.filterMap = {
+        vstr.inited = true
+        vstr.filterMap = {
             uri: encodeURI,
             uricom: encodeURIComponent,
             json: function(value) {

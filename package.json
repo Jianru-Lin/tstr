@@ -1,8 +1,8 @@
 {
-  "name": "tstr",
+  "name": "vstr",
   "version": "1.0.0",
   "description": "useful template string utility.",
-  "main": "tstr.js",
+  "main": "vstr.js",
   "directories": {
     "test": "test"
   },
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jianru-Lin/tstr.git"
+    "url": "git+https://github.com/Jianru-Lin/vstr.git"
   },
   "keywords": [
     "template"
@@ -19,7 +19,7 @@
   "author": "Jianru Lin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jianru-Lin/tstr/issues"
+    "url": "https://github.com/Jianru-Lin/vstr/issues"
   },
-  "homepage": "https://github.com/Jianru-Lin/tstr#readme"
+  "homepage": "https://github.com/Jianru-Lin/vstr#readme"
 }
