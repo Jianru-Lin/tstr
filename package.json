@@ -1,6 +1,6 @@
 {
   "name": "vstr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "useful template string utility.",
   "main": "vstr.js",
   "directories": {
